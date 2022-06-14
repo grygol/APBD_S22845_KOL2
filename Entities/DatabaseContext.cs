@@ -6,7 +6,10 @@ namespace kol2.Entities
 {
 	public class DatabaseContext : DbContext
 	{
-		public DatabaseContext(DbContextOptions options) : base(options)
+        public DbSet<Album> Albums { get; set; }
+        public DbSet<Track> Tracks { get; set; }
+
+        public DatabaseContext(DbContextOptions options) : base(options)
 		{
 		}
 
@@ -39,7 +42,7 @@ namespace kol2.Entities
 				e.HasOne(e => e.Musician)
 				.WithMany(e => e.Musician_Tracks)
 				.HasForeignKey(e => e.IdMusician)
-				.OnDelete(DeleteBehavior.Cascade);
+				.OnDelete(DeleteBehavior.ClientSetNull);
 
 				e.HasOne(e => e.Track)
 				.WithMany(e => e.Musician_Tracks)

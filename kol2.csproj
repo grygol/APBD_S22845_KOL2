@@ -25,9 +25,15 @@
     <None Remove="Microsoft.EntityFrameworkCore.Tools" />
     <None Remove="Entity\" />
     <None Remove="Entities\Models\" />
+    <None Remove="Controllers\" />
+    <None Remove="Services\" />
+    <None Remove="DTOs\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Entities\" />
     <Folder Include="Entities\Models\" />
+    <Folder Include="Controllers\" />
+    <Folder Include="Services\" />
+    <Folder Include="DTOs\" />
   </ItemGroup>
 </Project>
