@@ -8,6 +8,8 @@ namespace kol2.Entities
 	{
         public DbSet<Album> Albums { get; set; }
         public DbSet<Track> Tracks { get; set; }
+		public DbSet<Musician> Musicians { get; set; }
+        public DbSet<Musician_Track> Musician_Tracks { get; set; }
 
         public DatabaseContext(DbContextOptions options) : base(options)
 		{
@@ -30,7 +32,14 @@ namespace kol2.Entities
 						FirstName = "Muzyk",
 						LastName = "A",
 						Nickname = "Pierwszy"
-					});
+					},
+					new Musician
+                    {
+						IdMusician = 2,
+						FirstName = "Muzyk",
+						LastName = "B",
+						Nickname = "Drugi"
+                    });
 
 				e.ToTable("Musician");
 			});

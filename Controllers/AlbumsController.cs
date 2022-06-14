@@ -21,16 +21,11 @@ namespace kol2.Controllers
         {
             _albumService = albumService;
         }
-
-        // GET api/values/5
         [HttpGet("{id}")]
         public async Task<IActionResult> Get(int id)
         {
-            var albums = _albumService.GetAlbums(id);
 
-            if (albums.Count() == 0) return NotFound();
-
-            var result = albums.Select(e => new AlbumGet
+            var result = await _albumService.GetAlbums(id).Select(e => new AlbumGet
             {
                 IdAlbum = e.IdAlbum,
                 AlbumName = e.AlbumName,
@@ -42,27 +37,12 @@ namespace kol2.Controllers
                     TrackName = e.TrackName,
                     Duration = e.Duration
                 }).OrderBy(e => e.Duration).ToList()
-            });
+            }).FirstOrDefaultAsync();
+
+
+            if (result is null) return NotFound();
 
             return Ok(result);
-        }
-
-        // POST api/values
-        [HttpPost]
-        public void Post([FromBody]string value)
-        {
-        }
-
-        // PUT api/values/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody]string value)
-        {
-        }
-
-        // DELETE api/values/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
-        {
         }
     }
 }
